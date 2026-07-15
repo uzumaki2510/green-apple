@@ -1,0 +1,570 @@
+{%- style -%}
+  .aarus-hero {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Section Heights */
+  .aarus-hero--small { min-height: 50vh; }
+  .aarus-hero--medium { min-height: 70vh; }
+  .aarus-hero--large { min-height: 90vh; }
+  .aarus-hero--full-screen { min-height: 100vh; }
+
+  .aarus-hero__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .aarus-hero__img,
+  .aarus-hero__video,
+  .aarus-hero__media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .aarus-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: var(--overlay-opacity);
+    z-index: 2;
+  }
+
+  /* Subtle textile-inspired decorative shapes */
+  .aarus-hero__shape {
+    position: absolute;
+    z-index: 3;
+    color: currentColor;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .aarus-hero__shape--1 {
+    bottom: -15%;
+    right: -5%;
+    width: 45vw;
+    max-width: 500px;
+    transform: rotate(-15deg);
+  }
+
+  .aarus-hero__shape--2 {
+    top: 10%;
+    left: -5%;
+    width: 25vw;
+    max-width: 250px;
+    transform: rotate(45deg);
+  }
+
+  .aarus-hero__content-container {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    max-width: var(--page-width, 1400px);
+  }
+
+  /* Content Alignment */
+  .aarus-hero__content-align-left { justify-content: flex-start; text-align: left; }
+  .aarus-hero__content-align-center { justify-content: center; text-align: center; }
+  .aarus-hero__content-align-right { justify-content: flex-end; text-align: right; }
+
+  .aarus-hero__content {
+    max-width: 800px;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Floating Sticker */
+  .aarus-hero__sticker {
+    position: absolute;
+    top: -2rem;
+    right: 5%;
+    background-color: var(--color-button, #000);
+    color: var(--color-button-text, #fff);
+    padding: 1.5rem;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    transform: rotate(10deg);
+    animation: aarus-spin 25s linear infinite;
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+    z-index: 10;
+  }
+
+  .aarus-hero__sticker span {
+    position: relative;
+    z-index: 2;
+    transform: rotate(-10deg);
+    display: block;
+    line-height: 1.2;
+  }
+
+  .aarus-hero__sticker-star {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: -10px;
+    left: -10px;
+    color: currentColor;
+    animation: aarus-pulse 3s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aarus-hero__sticker,
+    .aarus-hero__sticker-star {
+      animation: none;
+    }
+  }
+
+  @keyframes aarus-spin {
+    100% { transform: rotate(370deg); }
+  }
+
+  @keyframes aarus-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15) rotate(15deg); }
+  }
+
+  /* Typography */
+  .aarus-hero__eyebrow {
+    font-family: var(--font-heading-family);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.3rem;
+  }
+
+  .aarus-hero__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    line-height: 0.9;
+    font-weight: 800;
+    margin: 0 0 2rem;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-left: -0.05em; /* Asymmetrical visual alignment */
+  }
+
+  .aarus-hero__text {
+    font-family: var(--font-body-family);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.6;
+    margin-bottom: 3.5rem;
+    max-width: 650px;
+  }
+  
+  .aarus-hero__text p {
+    margin: 0;
+  }
+
+  .aarus-hero__content-align-center .aarus-hero__text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .aarus-hero__content-align-right .aarus-hero__text {
+    margin-left: auto;
+  }
+
+  /* Buttons */
+  .aarus-hero__buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .aarus-hero__content-align-center .aarus-hero__buttons {
+    justify-content: center;
+  }
+  .aarus-hero__content-align-right .aarus-hero__buttons {
+    justify-content: flex-end;
+  }
+
+  /* Enhancing button styles for Gen Z editorial feel */
+  .aarus-hero .button {
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    border-radius: 0; /* Sharp edges */
+    padding: 1.2rem 2.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+  }
+
+  .aarus-hero .button:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 currentColor;
+  }
+
+  /* Responsive Adjustments */
+  @media screen and (max-width: 749px) {
+    .aarus-hero__content-container {
+      padding: 4rem 1.5rem;
+    }
+    .aarus-hero__sticker {
+      width: 100px;
+      height: 100px;
+      padding: 1rem;
+      font-size: 0.75rem;
+      top: -3rem;
+      right: 0;
+    }
+    .aarus-hero__title {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .aarus-hero__buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .aarus-hero .button {
+      width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="aarus-hero aarus-hero--{{ section.settings.section_height }} color-{{ section.settings.color_scheme }}" 
+         style="--overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"
+         data-section-id="{{ section.id }}" 
+         data-section-type="aarus-hero">
+  
+  <div class="aarus-hero__media">
+    {%- if section.settings.video != blank -%}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'aarus-hero__video' }}
+    {%- elsif section.settings.image != blank -%}
+      <picture>
+        {%- if section.settings.mobile_image != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 750 }}">
+        {%- endif -%}
+        <img src="{{ section.settings.image | image_url: width: 2000 }}" 
+             alt="{{ section.settings.image.alt | escape }}" 
+             class="aarus-hero__img" 
+             width="{{ section.settings.image.width }}"
+             height="{{ section.settings.image.height }}"
+             loading="{% if section.index == 1 %}eager{% else %}lazy{% endif %}">
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg aarus-hero__img' }}
+    {%- endif -%}
+    
+    <div class="aarus-hero__overlay"></div>
+    
+    <!-- Decorative Textile Shapes -->
+    <svg class="aarus-hero__shape aarus-hero__shape--1" viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C40,10 60,90 100,100 L0,100 Z" fill="currentColor"/>
+      <path d="M10,0 C40,30 60,60 90,100 L10,100 Z" fill="currentColor" opacity="0.5"/>
+    </svg>
+    <svg class="aarus-hero__shape aarus-hero__shape--2" viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,0 100,50 50,100 0,50" fill="currentColor"/>
+      <circle cx="50" cy="50" r="20" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="aarus-hero__content-container aarus-hero__content-align-{{ section.settings.content_alignment }}">
+    <div class="aarus-hero__content">
+      
+      {%- if section.settings.sticker_text != blank -%}
+        <div class="aarus-hero__sticker">
+          <span>{{ section.settings.sticker_text }}</span>
+          <svg viewBox="0 0 50 50" aria-hidden="true" class="aarus-hero__sticker-star" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 0 L31 16 L48 18 L34 29 L39 46 L25 36 L11 46 L16 29 L2 18 L19 16 Z" fill="currentColor"/>
+          </svg>
+        </div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'eyebrow' -%}
+            {%- if block.settings.text != blank -%}
+              <p class="aarus-hero__eyebrow" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </p>
+            {%- endif -%}
+            
+          {%- when 'heading' -%}
+            {%- if block.settings.text != blank -%}
+              <h1 class="aarus-hero__title" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </h1>
+            {%- endif -%}
+            
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="aarus-hero__text" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+            
+          {%- when 'buttons' -%}
+            <div class="aarus-hero__buttons" {{ block.shopify_attributes }}>
+              {%- if block.settings.button_1_label != blank -%}
+                <a {% if block.settings.button_1_link != blank %}href="{{ block.settings.button_1_link }}"{% else %}role="link" aria-disabled="true"{% endif %} class="button button--{{ block.settings.button_1_style }}">
+                  {{ block.settings.button_1_label }}
+                </a>
+              {%- endif -%}
+              {%- if block.settings.button_2_label != blank -%}
+                <a {% if block.settings.button_2_link != blank %}href="{{ block.settings.button_2_link }}"{% else %}role="link" aria-disabled="true"{% endif %} class="button button--{{ block.settings.button_2_style }}">
+                  {{ block.settings.button_2_label }}
+                </a>
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aarus Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image (Optional)"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video",
+      "info": "Muted autoplay video. Replaces image if set."
+    },
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+        {
+          "value": "full-screen",
+          "label": "Full Screen"
+        }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "sticker_text",
+      "label": "Sticker Text",
+      "default": "100% Handcrafted",
+      "info": "Leave blank to hide"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "New Arrivals"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Heading",
+          "default": "Aarus Creations"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Discover culturally authentic ethnic wear and handcrafted accessories built for the modern generation.</p>"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "Button 1 Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "select",
+          "id": "button_1_style",
+          "label": "Button 1 Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "Button 2 Label",
+          "default": "Explore"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Button 2 Link"
+        },
+        {
+          "type": "select",
+          "id": "button_2_style",
+          "label": "Button 2 Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            }
+          ],
+          "default": "secondary"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Hero",
+      "blocks": [
+        {
+          "type": "eyebrow"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "buttons"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

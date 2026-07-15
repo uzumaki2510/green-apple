@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "aarus_hero": {
+      "type": "aarus-hero",
+      "settings": {}
+    },
+    "aarus_trust": {
+      "type": "aarus-brand-trust",
+      "settings": {}
+    },
+    "aarus_shop_by_vibe": {
+      "type": "aarus-shop-by-vibe",
+      "settings": {}
+    },
+    "trending_now": {
+      "type": "collection-list",
+      "settings": {}
+    },
+    "aarus_craft": {
+      "type": "aarus-craft-story",
+      "settings": {}
+    },
+    "aarus_spotted": {
+      "type": "aarus-spotted",
+      "settings": {}
+    },
+    "aarus_reviews": {
+      "type": "aarus-reviews",
+      "settings": {}
+    },
+    "aarus_why_us": {
+      "type": "aarus-why-us",
+      "settings": {}
+    },
+    "aarus_photo_reviews": {
+      "type": "aarus-photo-reviews",
+      "settings": {}
+    },
+    "aarus_inner_circle": {
+      "type": "aarus-inner-circle",
+      "settings": {}
+    }
+  },
+  "order": [
+    "aarus_hero",
+    "aarus_trust",
+    "aarus_shop_by_vibe",
+    "trending_now",
+    "aarus_craft",
+    "aarus_spotted",
+    "aarus_reviews",
+    "aarus_why_us",
+    "aarus_photo_reviews",
+    "aarus_inner_circle"
+  ]
+}

@@ -1,0 +1,426 @@
+<section class="aarus-photo-reviews color-{{ section.settings.color_scheme }} spacing-style" style="--padding-top: {{ section.settings.padding_top }}px; --padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    
+    <div class="aarus-photo-reviews__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="h2 aarus-photo-reviews__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+      {% if section.settings.supporting_text != blank %}
+        <p class="aarus-photo-reviews__supporting-text">{{ section.settings.supporting_text | escape }}</p>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size == 0 %}
+      <div class="aarus-photo-reviews__empty-state">
+        <p class="aarus-photo-reviews__empty-text">Your story could be here next.</p>
+      </div>
+    {% else %}
+      <div class="aarus-photo-reviews__grid{% if section.settings.mobile_carousel %} aarus-photo-reviews__grid--carousel-mobile{% endif %}">
+        {% for block in section.blocks %}
+          <div class="aarus-photo-reviews__card{% if forloop.first %} aarus-photo-reviews__card--featured{% endif %}" {{ block.shopify_attributes }}>
+            
+            <div class="aarus-photo-reviews__media">
+              {% if block.settings.customer_photo != blank %}
+                {{ block.settings.customer_photo | image_url: width: 800 | image_tag: class: 'aarus-photo-reviews__image', loading: 'lazy', alt: block.settings.customer_name }}
+              {% else %}
+                <div class="aarus-photo-reviews__placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="aarus-photo-reviews__content">
+              {% if section.settings.show_rating %}
+                <div class="aarus-photo-reviews__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
+                  {% for i in (1..block.settings.rating) %}
+                    ★
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              {% if block.settings.review_text != blank %}
+                <blockquote class="aarus-photo-reviews__quote">"{{ block.settings.review_text | escape }}"</blockquote>
+              {% endif %}
+              
+              <div class="aarus-photo-reviews__meta">
+                <span class="aarus-photo-reviews__name">{{ block.settings.customer_name | escape }}</span>
+                
+                {% if section.settings.show_location and block.settings.location != blank %}
+                  <span class="aarus-photo-reviews__location">from {{ block.settings.location | escape }}</span>
+                {% endif %}
+                
+                {% if section.settings.show_instagram and block.settings.instagram_handle != blank %}
+                  <span class="aarus-photo-reviews__instagram">{{ block.settings.instagram_handle | escape }}</span>
+                {% endif %}
+                
+                {% if block.settings.verified_purchase %}
+                  <span class="aarus-photo-reviews__verified">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified
+                  </span>
+                {% endif %}
+              </div>
+              
+              {% if block.settings.product_name != blank %}
+                <div class="aarus-photo-reviews__product">
+                  <p class="aarus-photo-reviews__product-label">Wearing:</p>
+                  {% if block.settings.product_link != blank %}
+                    <a href="{{ block.settings.product_link }}" class="aarus-photo-reviews__product-link">{{ block.settings.product_name | escape }}</a>
+                  {% else %}
+                    <span class="aarus-photo-reviews__product-title">{{ block.settings.product_name | escape }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .aarus-photo-reviews {
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    background-color: var(--color-background);
+  }
+
+  .aarus-photo-reviews__header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .aarus-photo-reviews__heading {
+    font-family: var(--font-heading-family);
+    margin-bottom: 0.5rem;
+    color: var(--aarus-indigo);
+  }
+
+  .aarus-photo-reviews__supporting-text {
+    font-size: 1.1rem;
+    color: var(--aarus-indigo);
+    opacity: 0.8;
+  }
+
+  .aarus-photo-reviews__empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(0,0,0,0.03);
+    border-radius: 12px;
+    border: 1px dashed rgba(0,0,0,0.1);
+  }
+
+  .aarus-photo-reviews__empty-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--aarus-indigo);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .aarus-photo-reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  @media screen and (min-width: 900px) {
+    .aarus-photo-reviews__grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+    }
+    
+    .aarus-photo-reviews__card--featured {
+      grid-column: span 2;
+      grid-row: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .aarus-photo-reviews__card--featured .aarus-photo-reviews__media {
+      aspect-ratio: 4 / 5;
+    }
+    
+    .aarus-photo-reviews__card--featured .aarus-photo-reviews__quote {
+      font-size: 1.5rem;
+    }
+  }
+
+  .aarus-photo-reviews__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--aarus-ivory);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  
+  .aarus-photo-reviews__card--featured {
+    padding: 2rem;
+    background: var(--aarus-ivory);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .aarus-photo-reviews__media {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  .aarus-photo-reviews__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .aarus-photo-reviews__placeholder svg {
+    width: 100%;
+    height: 100%;
+    fill: #ddd;
+  }
+
+  .aarus-photo-reviews__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+  }
+
+  .aarus-photo-reviews__rating {
+    color: var(--aarus-marigold);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .aarus-photo-reviews__quote {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--aarus-indigo);
+    font-weight: 500;
+  }
+
+  .aarus-photo-reviews__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+  }
+
+  .aarus-photo-reviews__name {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--aarus-indigo);
+  }
+
+  .aarus-photo-reviews__location,
+  .aarus-photo-reviews__instagram {
+    opacity: 0.7;
+    color: var(--aarus-indigo);
+  }
+  
+  .aarus-photo-reviews__verified {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--aarus-mehndi);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+  }
+
+  .aarus-photo-reviews__product {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .aarus-photo-reviews__product-label {
+    margin: 0;
+    font-weight: 700;
+    color: var(--aarus-indigo);
+  }
+
+  .aarus-photo-reviews__product-link {
+    color: var(--aarus-rani-pink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .aarus-photo-reviews__product-link:hover {
+    color: var(--aarus-indigo);
+  }
+
+  @media screen and (max-width: 749px) {
+    .aarus-photo-reviews__grid--carousel-mobile {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding-bottom: 2rem;
+      -webkit-overflow-scrolling: touch;
+      margin-right: -1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    .aarus-photo-reviews__grid--carousel-mobile::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .aarus-photo-reviews__grid--carousel-mobile .aarus-photo-reviews__card {
+      scroll-snap-align: center;
+      flex: 0 0 85%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Photo Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Seen in your festive era."
+    },
+    {
+      "type": "textarea",
+      "id": "supporting_text",
+      "label": "Supporting copy",
+      "default": "Real outfits, real celebrations, real Aarus energy."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_carousel",
+      "label": "Enable swipe carousel on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show star ratings",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_location",
+      "label": "Show customer location",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_instagram",
+      "label": "Show Instagram handle",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Manual Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "customer_photo",
+          "label": "Customer photo"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name",
+          "info": "Do not use fake names."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Customer location"
+        },
+        {
+          "type": "text",
+          "id": "instagram_handle",
+          "label": "Instagram handle"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified_purchase",
+          "label": "Show Verified Purchase label",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product worn"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Photo Reviews"
+    }
+  ]
+}
+{% endschema %}

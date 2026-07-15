@@ -1,0 +1,200 @@
+<section class="aarus-complete-look color-{{ section.settings.color_scheme }} spacing-style" style="--padding-top: {{ section.settings.padding_top }}px; --padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <h2 class="aarus-complete-look__title">{{ section.settings.title | escape }}</h2>
+    
+    <div class="aarus-complete-look__grid">
+      {% assign max_products = section.settings.max_products %}
+      {% assign product_count = 0 %}
+      {% assign current_tags = product.tags | join: ',' | downcase %}
+      
+      {% for collection in product.collections %}
+        {% if product_count >= max_products %}{% break %}{% endif %}
+        {% for cross_product in collection.products %}
+          {% if product_count >= max_products %}{% break %}{% endif %}
+          
+          {% if cross_product.id != product.id %}
+            {% assign match_found = false %}
+            {% for tag in cross_product.tags %}
+              {% assign tag_down = tag | downcase %}
+              {% if current_tags contains tag_down and tag_down contains 'cross-sell' %}
+                {% assign match_found = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            
+            {% if match_found %}
+              <div class="aarus-complete-look__item">
+                <a href="{{ cross_product.url }}" class="aarus-complete-look__image-link">
+                  {{ cross_product.featured_image | image_url: width: 300 | image_tag: class: 'aarus-complete-look__image', loading: 'lazy' }}
+                </a>
+                <div class="aarus-complete-look__details">
+                  <a href="{{ cross_product.url }}" class="aarus-complete-look__product-title">{{ cross_product.title }}</a>
+                  <p class="aarus-complete-look__price">{{ cross_product.price | money }}</p>
+                  
+                  {% if cross_product.available %}
+                    {% form 'product', cross_product, data-type: 'add-to-cart-form' %}
+                      <input type="hidden" name="id" value="{{ cross_product.variants.first.id }}">
+                      <button type="submit" class="button button--secondary button--small aarus-complete-look__add">Add to cart</button>
+                    {% endform %}
+                  {% else %}
+                    <button type="button" class="button button--secondary button--small aarus-complete-look__add" disabled>Sold out</button>
+                  {% endif %}
+                </div>
+              </div>
+              {% assign product_count = product_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      
+      {% if product_count == 0 %}
+        <!-- Fallback if no tag matches -->
+        {% for cross_product in collections.all.products limit: max_products %}
+          {% if cross_product.id != product.id and cross_product.available %}
+            <div class="aarus-complete-look__item">
+              <a href="{{ cross_product.url }}" class="aarus-complete-look__image-link">
+                {{ cross_product.featured_image | image_url: width: 300 | image_tag: class: 'aarus-complete-look__image', loading: 'lazy' }}
+              </a>
+              <div class="aarus-complete-look__details">
+                <a href="{{ cross_product.url }}" class="aarus-complete-look__product-title">{{ cross_product.title }}</a>
+                <p class="aarus-complete-look__price">{{ cross_product.price | money }}</p>
+                {% form 'product', cross_product, data-type: 'add-to-cart-form' %}
+                  <input type="hidden" name="id" value="{{ cross_product.variants.first.id }}">
+                  <button type="submit" class="button button--secondary button--small aarus-complete-look__add">Add to cart</button>
+                {% endform %}
+              </div>
+            </div>
+            {% assign product_count = product_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .aarus-complete-look {
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    background-color: var(--aarus-ivory);
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .aarus-complete-look__title {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .aarus-complete-look__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .aarus-complete-look__item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .aarus-complete-look__image-link {
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f4f4f4;
+  }
+  
+  .aarus-complete-look__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .aarus-complete-look__image-link:hover .aarus-complete-look__image {
+    transform: scale(1.05);
+  }
+  
+  .aarus-complete-look__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .aarus-complete-look__product-title {
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    color: var(--aarus-indigo);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  
+  .aarus-complete-look__price {
+    font-size: 0.95rem;
+    color: var(--aarus-indigo);
+    margin: 0;
+  }
+  
+  .aarus-complete-look__add {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Complete the Look",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Complete the Look"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Maximum products to show",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complete the Look"
+    }
+  ],
+  "templates": ["product"]
+}
+{% endschema %}

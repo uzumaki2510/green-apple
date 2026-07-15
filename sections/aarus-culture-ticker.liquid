@@ -1,0 +1,174 @@
+<section
+  class="aarus-ticker color-{{ section.settings.color_scheme }}"
+  aria-label="{{ section.settings.accessibility_label | escape }}"
+>
+  <div
+    class="aarus-ticker__track"
+    style="--ticker-duration: {{ section.settings.speed }}s;"
+  >
+    {% for duplicate in (1..2) %}
+      <div
+        class="aarus-ticker__group"
+        {% if duplicate == 2 %}aria-hidden="true"{% endif %}
+      >
+        {% for block in section.blocks %}
+          <span class="aarus-ticker__item" {{ block.shopify_attributes }}>
+            {{ block.settings.text | escape }}
+            <span class="aarus-ticker__symbol" aria-hidden="true">
+              {{ section.settings.symbol | escape }}
+            </span>
+          </span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .aarus-ticker {
+    overflow: hidden;
+    padding-block: 12px;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  .aarus-ticker__track {
+    display: flex;
+    width: max-content;
+    animation: aarus-ticker-scroll var(--ticker-duration) linear infinite;
+    will-change: transform;
+  }
+
+  .aarus-ticker__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .aarus-ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding-inline-start: 24px;
+    font-size: clamp(0.875rem, 1.4vw, 1.05rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .aarus-ticker__symbol {
+    color: currentColor;
+    font-size: 0.8em;
+  }
+
+  .aarus-ticker:hover .aarus-ticker__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes aarus-ticker-scroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aarus-ticker__track {
+      width: 100%;
+      animation: none;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .aarus-ticker__group[aria-hidden="true"] {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Aarus culture ticker",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "symbol",
+      "label": "Separator symbol",
+      "default": "✦"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation duration",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "s",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Store highlights"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Made for the twirl"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus culture ticker",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "Made for the twirl"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "Festive main-character energy"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "Small-batch drops"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "Rooted in tradition"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

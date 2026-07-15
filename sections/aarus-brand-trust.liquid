@@ -1,0 +1,163 @@
+<section class="aarus-trust-bar color-{{ section.settings.color_scheme }} spacing-style" style="--padding-top: {{ section.settings.padding_top }}px; --padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <div class="aarus-trust-bar__grid">
+      {% for block in section.blocks %}
+        <div class="aarus-trust-bar__item" {{ block.shopify_attributes }}>
+          {% if block.settings.icon != 'none' %}
+            <span class="aarus-trust-bar__icon svg-wrapper">
+              {% render 'icon', icon: block.settings.icon %}
+            </span>
+          {% endif %}
+          <div class="aarus-trust-bar__text">
+            <h3 class="aarus-trust-bar__heading">{{ block.settings.title | escape }}</h3>
+            {% if block.settings.text != blank %}
+              <p class="aarus-trust-bar__subtext">{{ block.settings.text | escape }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .aarus-trust-bar {
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    position: relative;
+  }
+
+  .aarus-trust-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-image: radial-gradient(circle, var(--aarus-rani-pink) 30%, transparent 40%);
+    background-size: 16px 16px;
+    background-repeat: repeat-x;
+    opacity: 0.2;
+  }
+
+  .aarus-trust-bar__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .aarus-trust-bar__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .aarus-trust-bar__icon {
+    width: 40px;
+    height: 40px;
+    color: var(--aarus-marigold);
+  }
+
+  .aarus-trust-bar__heading {
+    font-size: 1.1rem;
+    margin: 0;
+    font-family: var(--font-heading-family);
+  }
+
+  .aarus-trust-bar__subtext {
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0 0;
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 749px) {
+    .aarus-trust-bar__grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Aarus Brand Trust",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_feature",
+      "name": "Feature",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "return", "label": "Return arrows" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "star", "label": "Star" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Quality checked"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subtext"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Brand Trust",
+      "blocks": [
+        { "type": "trust_feature", "settings": { "icon": "check", "title": "Quality checked" } },
+        { "type": "trust_feature", "settings": { "icon": "return", "title": "Easy exchanges" } },
+        { "type": "trust_feature", "settings": { "icon": "lock", "title": "Secure checkout" } },
+        { "type": "trust_feature", "settings": { "icon": "truck", "title": "Fast dispatch" } },
+        { "type": "trust_feature", "settings": { "icon": "star", "title": "Small-batch drops" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

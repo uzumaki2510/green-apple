@@ -1,0 +1,136 @@
+/* Aarus Creations Visual System */
+
+:root {
+  /* OKLCH Color Palette */
+  --aarus-ivory: oklch(0.97 0.01 90);
+  --aarus-rani-pink: oklch(0.60 0.25 350);
+  --aarus-marigold: oklch(0.80 0.18 70);
+  --aarus-indigo: oklch(0.25 0.06 270);
+  --aarus-mehndi: oklch(0.55 0.12 130);
+  --aarus-terracotta: oklch(0.55 0.15 45);
+
+  /* Typography Scales */
+  --font-heading-family: 'Bricolage Grotesque', sans-serif;
+  --font-body-family: 'DM Sans', sans-serif;
+}
+
+/* Base Overrides for Editorial Gen Z Feel */
+body {
+  background-color: var(--aarus-ivory);
+  color: var(--aarus-indigo);
+  font-family: var(--font-body-family);
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading-family);
+  color: var(--aarus-indigo);
+  text-wrap: balance;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h1, .h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+h2, .h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; }
+h3, .h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.2; }
+
+p {
+  max-width: 70ch;
+}
+
+/* Button Refinements (12px rounded, not pill) */
+.button, 
+button, 
+.btn {
+  border-radius: 12px !important;
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+}
+
+.button:hover,
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.button--primary {
+  background-color: var(--aarus-rani-pink) !important;
+  color: #fff !important;
+  border-color: var(--aarus-rani-pink) !important;
+}
+.button--primary:hover {
+  background-color: oklch(0.55 0.25 350) !important;
+}
+
+.button--secondary {
+  background-color: transparent !important;
+  color: var(--aarus-indigo) !important;
+  border-color: var(--aarus-indigo) !important;
+}
+.button--secondary:hover {
+  background-color: var(--aarus-indigo) !important;
+  color: var(--aarus-ivory) !important;
+}
+
+/* Focus States for Accessibility */
+*:focus-visible {
+  outline: 3px solid var(--aarus-rani-pink) !important;
+  outline-offset: 4px !important;
+}
+
+/* Stickers */
+.aarus-sticker {
+  display: inline-block;
+  background-color: var(--aarus-marigold);
+  color: var(--aarus-indigo);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-family: var(--font-heading-family);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+.aarus-sticker--primary { background-color: var(--aarus-rani-pink); color: #fff; transform: rotate(2deg); }
+.aarus-sticker--secondary { background-color: var(--aarus-mehndi); color: #fff; transform: rotate(-2deg); }
+.aarus-sticker--dark { background-color: var(--aarus-indigo); color: var(--aarus-ivory); transform: rotate(1deg); }
+
+/* Separators */
+.aarus-separator-bandhani {
+  height: 6px;
+  width: 100%;
+  background-image: radial-gradient(circle, var(--aarus-rani-pink) 30%, transparent 40%);
+  background-size: 16px 16px;
+  background-repeat: repeat-x;
+  opacity: 0.6;
+}
+
+.aarus-separator-ajrakh {
+  height: 12px;
+  width: 100%;
+  background: 
+    linear-gradient(135deg, var(--aarus-indigo) 25%, transparent 25%) -6px 0,
+    linear-gradient(225deg, var(--aarus-indigo) 25%, transparent 25%) -6px 0;
+  background-size: 12px 12px;
+  opacity: 0.8;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
