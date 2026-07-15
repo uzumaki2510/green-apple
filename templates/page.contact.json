@@ -1,146 +1,208 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
-          "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "title",
-        "content"
-      ],
+    "contact_hero": {
+      "type": "aarus-contact-hero",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "eyebrow": "Come say hi",
+        "heading": "Let’s make something beautiful together.",
+        "body": "Questions about sizing, styling, shipping, or a custom festive look? We’re here to help.",
+        "button_label": "Send us a message",
+        "button_link": "#AarusContactForm",
+        "whatsapp_label": "Chat on WhatsApp",
+        "image_position": "left",
+        "text_alignment": "left",
+        "color_scheme": "scheme-1",
+        "show_pattern": true
       }
     },
-    "form": {
-      "type": "section",
+    "contact_options": {
+      "type": "aarus-contact-options",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "whatsapp": {
+          "type": "contact_method",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "heading": "Need a quick answer?",
+            "body": "Chat with us about sizing, styling, or your order.",
+            "button_label": "Message us",
+            "color_scheme": "scheme-2"
+          }
+        },
+        "email": {
+          "type": "contact_method",
+          "settings": {
+            "heading": "Prefer email?",
+            "body": "Send your question and we’ll get back to you.",
+            "button_label": "Email Aarus",
+            "color_scheme": "scheme-3"
+          }
+        },
+        "custom": {
+          "type": "contact_method",
+          "settings": {
+            "heading": "Have something special in mind?",
+            "body": "Tell us about your occasion, colors, size, or styling idea.",
+            "button_label": "Request a custom order",
+            "button_link": "shopify:\/\/pages\/custom-order",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "order": {
+          "type": "contact_method",
+          "settings": {
+            "heading": "Checking an order?",
+            "body": "Keep your order number ready and we’ll help you track it.",
+            "button_label": "Get order help",
+            "color_scheme": "scheme-1"
+          }
         }
       },
       "block_order": [
-        "contact_form_UwiCkQ"
+        "whatsapp",
+        "email",
+        "custom",
+        "order"
       ],
-      "name": "t:names.contact_form",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "heading": "Pick your way to reach us.",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "contact_form": {
+      "type": "aarus-contact-form",
+      "settings": {
+        "heading": "Send us a message",
+        "color_scheme": "scheme-1",
+        "button_label": "Send Message",
+        "success_message": "Message received. We’ll get back to you soon.",
+        "error_message": "Something went wrong. Please check your details and try again.",
+        "privacy_text": "By submitting this form, you agree to our",
+        "show_custom_cta": true,
+        "custom_cta_heading": "Need something made just for you?",
+        "custom_cta_body": "Skip the general inbox and send a direct custom request to our styling team.",
+        "custom_cta_label": "Request custom order",
+        "custom_cta_link": "shopify:\/\/pages\/custom-order",
+        "padding_top": 40,
+        "padding_bottom": 80
+      }
+    },
+    "contact_story": {
+      "type": "aarus-contact-story",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "fact": "Festive wear and accessories"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "fact": "Styling help when you need it"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "fact": "Small-batch drops and special requests"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "heading": "From our hands to your celebration.",
+        "body": "Aarus Creations brings together festive color, thoughtful details, and pieces made to be worn, styled, and remembered.",
+        "color_scheme": "scheme-4",
+        "show_decoration": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "contact_faq": {
+      "type": "aarus-contact-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How quickly will I receive a reply?",
+            "answer": "<p>We typically reply within 24 hours on business days.<\/p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you help with sizing?",
+            "answer": "<p>Yes! Our styling team is happy to help you find the perfect fit. Just reach out via WhatsApp or email.<\/p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I request a custom color or size?",
+            "answer": "<p>Absolutely. Use our Custom Order form to request bespoke colors, specific measurements, or entirely new festive concepts.<\/p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once shipped, you’ll receive an email with your tracking number. You can also message us your order number for a quick update.<\/p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your exchange policy?",
+            "answer": "<p>We accept exchanges on standard sizes within 7 days of delivery. Custom orders are made exclusively for you and cannot be exchanged.<\/p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer styling suggestions?",
+            "answer": "<p>Yes! We love putting together complete festive looks, from the garment to the matching accessories.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6"
+      ],
+      "settings": {
+        "heading": "Frequently asked questions",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "contact_social": {
+      "type": "aarus-contact-social",
+      "settings": {
+        "heading": "Show us your Aarus moment.",
+        "body": "Tag us in your festive looks, twirls, and celebration-ready styling.",
+        "social_handle": "@aaruscreations",
+        "color_scheme": "scheme-3",
+        "instagram_url": "https:\/\/instagram.com",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "contact_hero",
+    "contact_options",
+    "contact_form",
+    "contact_story",
+    "contact_faq",
+    "contact_social"
   ]
 }

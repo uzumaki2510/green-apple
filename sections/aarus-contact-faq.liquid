@@ -1,0 +1,140 @@
+{{ 'aarus-contact.css' | asset_url | stylesheet_tag }}
+
+<section class="aarus-contact-section color-{{ section.settings.color_scheme }}" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="aarus-contact-container">
+    
+    <div class="aarus-contact-faq__wrapper">
+      {% if section.settings.heading != blank %}
+        <h2 class="h2 aarus-contact-faq__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      <div class="aarus-contact-faq__list">
+        {% for block in section.blocks %}
+          <details class="aarus-contact-faq__item" {{ block.shopify_attributes }}>
+            <summary class="aarus-contact-faq__summary">
+              {{ block.settings.question | escape }}
+              <svg class="aarus-contact-faq__icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="aarus-contact-faq__content">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How quickly will I receive a reply?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We aim to respond to all inquiries within 24 to 48 hours during business days.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Contact FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How quickly will I receive a reply?",
+            "answer": "<p>We typically reply within 24 hours on business days.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you help with sizing?",
+            "answer": "<p>Yes! Our styling team is happy to help you find the perfect fit. Just reach out via WhatsApp or email.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I request a custom color or size?",
+            "answer": "<p>Absolutely. Use our Custom Order form to request bespoke colors, specific measurements, or entirely new festive concepts.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once shipped, you’ll receive an email with your tracking number. You can also message us your order number for a quick update.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your exchange policy?",
+            "answer": "<p>We accept exchanges on standard sizes within 7 days of delivery. Custom orders are made exclusively for you and cannot be exchanged.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer styling suggestions?",
+            "answer": "<p>Yes! We love putting together complete festive looks, from the garment to the matching accessories.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

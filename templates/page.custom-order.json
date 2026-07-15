@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "custom_order_form": {
+      "type": "aarus-custom-order-form",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "custom_order_form"
+  ]
+}

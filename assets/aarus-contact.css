@@ -1,0 +1,425 @@
+/* Aarus Creations Contact Page Styles */
+
+/* --------------------------------------
+   Variables & Resets
+-------------------------------------- */
+.aarus-contact-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.aarus-contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --------------------------------------
+   1. Contact Hero
+-------------------------------------- */
+.aarus-contact-hero {
+  display: grid;
+  min-height: 620px;
+  max-height: 760px;
+  background-color: var(--color-background);
+}
+
+@media screen and (min-width: 900px) {
+  .aarus-contact-hero {
+    grid-template-columns: 55% 45%;
+  }
+  
+  .aarus-contact-hero--image-right {
+    grid-template-columns: 45% 55%;
+  }
+  .aarus-contact-hero--image-right .aarus-contact-hero__media {
+    order: 2;
+  }
+}
+
+.aarus-contact-hero__media {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.aarus-contact-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.aarus-contact-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.aarus-contact-hero__logo {
+  max-width: 180px;
+  margin-bottom: 2rem;
+  height: auto;
+}
+
+.aarus-contact-hero__eyebrow {
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--aarus-marigold);
+  margin-bottom: 0.5rem;
+}
+
+.aarus-contact-hero__heading {
+  margin: 0 0 1rem 0;
+  color: inherit;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+.aarus-contact-hero__body {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.aarus-contact-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.aarus-contact-hero__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, currentColor 30%, transparent 40%);
+  background-size: 16px 16px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media screen and (max-width: 899px) {
+  .aarus-contact-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    max-height: none;
+  }
+  
+  .aarus-contact-hero__media {
+    aspect-ratio: 9/16;
+    height: auto;
+    max-height: 60vh;
+  }
+  
+  .aarus-contact-hero__content {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* --------------------------------------
+   2. Contact Options (Staggered Bento)
+-------------------------------------- */
+.aarus-contact-options__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 750px) {
+  .aarus-contact-options__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .aarus-contact-options__card:nth-child(even) {
+    transform: translateY(2rem);
+  }
+}
+
+.aarus-contact-options__card {
+  padding: 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.aarus-contact-options__card:hover {
+  transform: translateY(-5px);
+}
+
+@media screen and (min-width: 750px) {
+  .aarus-contact-options__card:nth-child(even):hover {
+    transform: translateY(calc(2rem - 5px));
+  }
+}
+
+.aarus-contact-options__heading {
+  margin: 0;
+  font-family: var(--font-heading-family);
+}
+
+.aarus-contact-options__body {
+  margin: 0;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+.aarus-contact-options__button {
+  margin-top: 1rem;
+}
+
+/* --------------------------------------
+   3. Contact Form
+-------------------------------------- */
+.aarus-contact-form__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--aarus-ivory);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.aarus-contact-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.aarus-contact-form__row {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .aarus-contact-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.aarus-contact-form__input,
+.aarus-contact-form__select,
+.aarus-contact-form__textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background: rgba(0,0,0,0.02);
+  font-family: var(--font-body-family);
+  font-size: 1rem;
+  color: var(--aarus-indigo);
+  transition: all 0.2s ease;
+}
+
+.aarus-contact-form__input:focus,
+.aarus-contact-form__select:focus,
+.aarus-contact-form__textarea:focus {
+  outline: none;
+  border-color: var(--aarus-rani-pink);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(226, 11, 93, 0.1);
+}
+
+.aarus-contact-form__textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.aarus-contact-form__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--aarus-indigo);
+}
+
+.aarus-contact-form__submit-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.aarus-contact-form__submit {
+  min-width: 200px;
+}
+
+/* --------------------------------------
+   4. Story Panel
+-------------------------------------- */
+.aarus-contact-story__grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+  .aarus-contact-story__grid {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.aarus-contact-story__content {
+  padding: 2rem;
+  background: var(--aarus-ivory);
+  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.aarus-contact-story__heading {
+  margin: 0 0 1.5rem 0;
+  color: var(--aarus-indigo);
+}
+
+.aarus-contact-story__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.aarus-contact-story__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: var(--aarus-indigo);
+}
+
+.aarus-contact-story__icon {
+  color: var(--aarus-marigold);
+}
+
+.aarus-contact-story__decoration {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* --------------------------------------
+   5. FAQ Accordion
+-------------------------------------- */
+.aarus-contact-faq__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.aarus-contact-faq__heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.aarus-contact-faq__item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.aarus-contact-faq__item:first-child {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.aarus-contact-faq__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  font-family: var(--font-heading-family);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--aarus-indigo);
+  cursor: pointer;
+  list-style: none;
+}
+
+.aarus-contact-faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.aarus-contact-faq__icon {
+  transition: transform 0.3s ease;
+  color: var(--aarus-rani-pink);
+}
+
+.aarus-contact-faq__item[open] .aarus-contact-faq__icon {
+  transform: rotate(180deg);
+}
+
+.aarus-contact-faq__content {
+  padding-bottom: 1.5rem;
+  color: var(--aarus-indigo);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* --------------------------------------
+   6. Social Community
+-------------------------------------- */
+.aarus-contact-social__wrapper {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+  .aarus-contact-social__wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.aarus-contact-social__media {
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.05);
+}
+
+.aarus-contact-social__media img,
+.aarus-contact-social__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aarus-contact-social__links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.aarus-contact-social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+}
+
+.aarus-contact-social__link:hover {
+  opacity: 0.7;
+}

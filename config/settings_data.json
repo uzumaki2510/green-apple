@@ -84,6 +84,32 @@
       "color1": "#333333",
       "color2": "#EEF1EA",
       "color3": "#DFDFDF"
+    },
+    "color_schemes": {
+      "scheme-1": {
+        "background": "#FDFBF7",
+        "text": "#1a1a3a",
+        "button": "#E20B5D",
+        "button_label": "#FFFFFF"
+      },
+      "scheme-2": {
+        "background": "#1a1a3a",
+        "text": "#FDFBF7",
+        "button": "#F7A028",
+        "button_label": "#1a1a3a"
+      },
+      "scheme-3": {
+        "background": "#4A5D23",
+        "text": "#FDFBF7",
+        "button": "#E20B5D",
+        "button_label": "#FFFFFF"
+      },
+      "scheme-4": {
+        "background": "#F7A028",
+        "text": "#1a1a3a",
+        "button": "#E20B5D",
+        "button_label": "#FFFFFF"
+      }
     }
   },
   "presets": {

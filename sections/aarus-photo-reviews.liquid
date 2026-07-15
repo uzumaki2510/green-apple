@@ -17,17 +17,23 @@
     {% else %}
       <div class="aarus-photo-reviews__grid{% if section.settings.mobile_carousel %} aarus-photo-reviews__grid--carousel-mobile{% endif %}">
         {% for block in section.blocks %}
-          <div class="aarus-photo-reviews__card{% if forloop.first %} aarus-photo-reviews__card--featured{% endif %}" {{ block.shopify_attributes }}>
-            
-            <div class="aarus-photo-reviews__media">
-              {% if block.settings.customer_photo != blank %}
-                {{ block.settings.customer_photo | image_url: width: 800 | image_tag: class: 'aarus-photo-reviews__image', loading: 'lazy', alt: block.settings.customer_name }}
-              {% else %}
-                <div class="aarus-photo-reviews__placeholder">
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- assign has_content = false -%}
+            {%- if block.settings.customer_photo != blank or block.settings.review_text != blank -%}
+              {%- assign has_content = true -%}
+            {%- endif -%}
+
+            {%- if has_content or request.design_mode -%}
+              <div class="aarus-photo-reviews__card{% if forloop.first %} aarus-photo-reviews__card--featured{% endif %}" {{ block.shopify_attributes }}>
+                
+                <div class="aarus-photo-reviews__media aarus-photo-reviews__media--{{ section.settings.image_ratio }}">
+                  {% if block.settings.customer_photo != blank %}
+                    {{ block.settings.customer_photo | image_url: width: 800 | image_tag: class: 'aarus-photo-reviews__image', loading: 'lazy', alt: block.settings.customer_name }}
+                  {% elsif request.design_mode %}
+                    <div class="aarus-photo-reviews__placeholder">
+                      <p>Add a photo</p>
+                    </div>
+                  {% endif %}
                 </div>
-              {% endif %}
-            </div>
             
             <div class="aarus-photo-reviews__content">
               {% if section.settings.show_rating %}
@@ -72,6 +78,7 @@
               {% endif %}
             </div>
           </div>
+          {%- endif -%}
         {% endfor %}
       </div>
     {% endif %}
@@ -168,11 +175,13 @@
 
   .aarus-photo-reviews__media {
     width: 100%;
-    aspect-ratio: 1;
+    background: #f4f4f4;
     border-radius: 12px;
     overflow: hidden;
-    background: #f4f4f4;
   }
+  
+  .aarus-photo-reviews__media--portrait { aspect-ratio: 4/5; }
+  .aarus-photo-reviews__media--square { aspect-ratio: 1/1; }
 
   .aarus-photo-reviews__image {
     width: 100%;
@@ -180,10 +189,17 @@
     object-fit: cover;
   }
 
-  .aarus-photo-reviews__placeholder svg {
+  .aarus-photo-reviews__placeholder {
     width: 100%;
     height: 100%;
-    fill: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.03);
+    border: 1px dashed rgba(0,0,0,0.1);
+    color: var(--aarus-indigo);
+    opacity: 0.6;
+    font-size: 0.9rem;
   }
 
   .aarus-photo-reviews__content {
@@ -318,6 +334,16 @@
       "id": "mobile_carousel",
       "label": "Enable swipe carousel on mobile",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "portrait", "label": "Portrait (4:5)" },
+        { "value": "square", "label": "Square (1:1)" }
+      ],
+      "default": "portrait"
     },
     {
       "type": "checkbox",

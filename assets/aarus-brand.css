@@ -10,8 +10,8 @@
   --aarus-terracotta: oklch(0.55 0.15 45);
 
   /* Typography Scales */
-  --font-heading-family: 'Bricolage Grotesque', sans-serif;
-  --font-body-family: 'DM Sans', sans-serif;
+  --font-heading-family: 'Fraunces', serif;
+  --font-body-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Base Overrides for Editorial Gen Z Feel */
@@ -28,8 +28,8 @@ h1, h2, h3, h4, h5, h6,
   font-family: var(--font-heading-family);
   color: var(--aarus-indigo);
   text-wrap: balance;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 h1, .h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
@@ -38,6 +38,17 @@ h3, .h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.2; }
 
 p {
   max-width: 70ch;
+  text-wrap: pretty;
+}
+
+/* Prices */
+.price, 
+.price-item, 
+.cart-item__price, 
+.totals__subtotal-value {
+  font-family: var(--font-body-family);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 
 /* Button Refinements (12px rounded, not pill) */
@@ -45,9 +56,9 @@ p {
 button, 
 .btn {
   border-radius: 12px !important;
-  font-family: var(--font-heading-family);
+  font-family: var(--font-body-family);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   padding: 1rem 2rem;
@@ -132,5 +143,61 @@ button:hover {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Product Card Optimizations */
+.card-gallery,
+.product-card__media,
+.product-media-container {
+  aspect-ratio: 4 / 5 !important;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+.card-gallery img,
+.product-card__media img,
+.product-media-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+}
+
+/* Title clamp */
+.product-card__content .product-title,
+.product-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+/* Compact Add to Cart button */
+.product-card__content .button--quick-add,
+.product-card__content .button {
+  padding: 0.5rem 1rem !important;
+  min-height: 44px;
+  font-size: 0.85rem;
+}
+
+@media screen and (max-width: 749px) {
+  .product-grid {
+    --grid-gap: 12px;
+    gap: 12px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .card-gallery,
+  .product-card__media,
+  .product-media-container {
+    aspect-ratio: 4 / 5 !important;
+  }
+  
+  .product-card__content .button {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem;
   }
 }

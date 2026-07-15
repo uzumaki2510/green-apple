@@ -1,0 +1,205 @@
+{{ 'aarus-contact.css' | asset_url | stylesheet_tag }}
+
+<section class="aarus-contact-section color-{{ section.settings.color_scheme }}" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="aarus-contact-container">
+    
+    <div class="aarus-contact-form__wrapper">
+      {% if section.settings.heading != blank %}
+        <h2 class="h2" style="text-align: center; margin-top: 0; margin-bottom: 2rem; color: var(--aarus-indigo); font-family: var(--font-heading-family);">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      {% form 'contact', id: 'AarusContactForm' %}
+        {%- if form.posted_successfully? -%}
+          <div class="aarus-custom-order-form__message aarus-custom-order-form__message--success" tabindex="-1" autofocus>
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <p>{{ section.settings.success_message | escape }}</p>
+          </div>
+        {%- elsif form.errors -%}
+          <div class="aarus-custom-order-form__message aarus-custom-order-form__message--error" tabindex="-1" autofocus>
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <p>{{ section.settings.error_message | escape }}</p>
+          </div>
+        {%- endif -%}
+
+        <div class="aarus-contact-form__fields">
+          <div class="aarus-contact-form__row">
+            <div>
+              <label class="aarus-contact-form__label" for="ContactForm-name">Name</label>
+              <input class="aarus-contact-form__input" type="text" id="ContactForm-name" name="contact[name]" value="{{ form.name }}" autocomplete="name" required>
+            </div>
+            
+            <div>
+              <label class="aarus-contact-form__label" for="ContactForm-email">Email <span aria-hidden="true">*</span></label>
+              <input class="aarus-contact-form__input" type="email" id="ContactForm-email" name="contact[email]" value="{{ form.email }}" spellcheck="false" autocapitalize="off" autocomplete="email" aria-required="true" required>
+            </div>
+          </div>
+
+          <div class="aarus-contact-form__row">
+            <div>
+              <label class="aarus-contact-form__label" for="ContactForm-order">Order number (Optional)</label>
+              <input class="aarus-contact-form__input" type="text" id="ContactForm-order" name="contact[order_number]" value="{{ form.order_number }}">
+            </div>
+            
+            <div>
+              <label class="aarus-contact-form__label" for="ContactForm-reason">Reason for contacting us</label>
+              <select class="aarus-contact-form__select" id="ContactForm-reason" name="contact[reason]" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Product question">Product question</option>
+                <option value="Size or fit help">Size or fit help</option>
+                <option value="Order support">Order support</option>
+                <option value="Shipping question">Shipping question</option>
+                <option value="Exchange or return">Exchange or return</option>
+                <option value="Custom order">Custom order</option>
+                <option value="Collaboration">Collaboration</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="aarus-contact-form__label" for="ContactForm-body">Message <span aria-hidden="true">*</span></label>
+            <textarea class="aarus-contact-form__textarea" id="ContactForm-body" name="contact[body]" required>{{ form.body }}</textarea>
+          </div>
+        </div>
+
+        <div class="aarus-contact-form__submit-area">
+          <button type="submit" class="button button--primary aarus-contact-form__submit">
+            {{ section.settings.button_label | escape }}
+          </button>
+          
+          {% if section.settings.privacy_text != blank %}
+            <p style="font-size: 0.85rem; opacity: 0.7; color: var(--aarus-indigo); text-align: center; margin-top: 1rem;">
+              {{ section.settings.privacy_text | escape }} 
+              {% if section.settings.privacy_url != blank %}
+                <a href="{{ section.settings.privacy_url }}" style="text-decoration: underline;">Privacy Policy</a>.
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      {% endform %}
+
+      {% if section.settings.show_custom_cta %}
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px dashed rgba(0,0,0,0.1); text-align: center;">
+          <h3 class="h4" style="color: var(--aarus-indigo); font-family: var(--font-heading-family); margin-bottom: 0.5rem;">{{ section.settings.custom_cta_heading | escape }}</h3>
+          <p style="color: var(--aarus-indigo); opacity: 0.8; margin-bottom: 1.5rem; font-size: 0.95rem;">{{ section.settings.custom_cta_body | escape }}</p>
+          <a href="{{ section.settings.custom_cta_link }}" class="button button--secondary" style="min-width: 200px;">
+            {{ section.settings.custom_cta_label | escape }}
+          </a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Send us a message"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button label",
+      "default": "Send Message"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Message received. We’ll get back to you soon."
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Error message",
+      "default": "Something went wrong. Please check your details and try again."
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy text",
+      "default": "By submitting this form, you agree to our"
+    },
+    {
+      "type": "url",
+      "id": "privacy_url",
+      "label": "Privacy policy link"
+    },
+    {
+      "type": "header",
+      "content": "Custom Order CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_custom_cta",
+      "label": "Show Custom Order CTA below form",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_cta_heading",
+      "label": "Heading",
+      "default": "Need something made just for you?"
+    },
+    {
+      "type": "text",
+      "id": "custom_cta_body",
+      "label": "Body",
+      "default": "Skip the general inbox and send a direct custom request to our styling team."
+    },
+    {
+      "type": "text",
+      "id": "custom_cta_label",
+      "label": "Button label",
+      "default": "Request custom order"
+    },
+    {
+      "type": "url",
+      "id": "custom_cta_link",
+      "label": "Button link",
+      "info": "Link this to your /pages/custom-order page"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Contact Form"
+    }
+  ]
+}
+{% endschema %}
