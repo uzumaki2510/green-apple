@@ -109,11 +109,17 @@
     {% if products.size == 0 %}
       <div class="main-collection-grid__empty">
         <h2 class="main-collection-grid__empty-title h2">
-          {{ 'content.no_products_found' | t }}
+          Oops! This collection is currently empty.
         </h2>
         <p>
-          {{ 'content.use_fewer_filters_html' | t: link: collection.url, class: 'main-collection-grid__empty-link' }}
+          We might be restocking or these items are out of season.<br>
+          While you're here, check out our other collections:
         </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+          <a href="/collections/new-arrivals" class="button button--secondary">New Arrivals</a>
+          <a href="/collections/best-sellers" class="button button--secondary">Best Sellers</a>
+          <a href="/collections/all" class="button button--secondary">Shop All</a>
+        </div>
       </div>
     {% else %}
       {% if enable_infinite_scroll %}

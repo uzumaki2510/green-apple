@@ -2208,5 +2208,43 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Contact Information",
+    "settings": [
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support Email",
+        "default": "[CONFIRMED_EMAIL]",
+        "info": "Used in the footer and contact pages."
+      },
+      {
+        "type": "text",
+        "id": "support_phone",
+        "label": "Support Phone",
+        "default": "[CONFIRMED_PHONE]",
+        "info": "Include country code. Used in headers/footers."
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp Number",
+        "default": "[CONFIRMED_WHATSAPP]",
+        "info": "Use country code and number without spaces (e.g. 919999999999) for wa.me links."
+      },
+      {
+        "type": "text",
+        "id": "business_hours",
+        "label": "Business Hours",
+        "default": "Mon - Sat, 10 AM - 6 PM"
+      },
+      {
+        "type": "textarea",
+        "id": "business_address",
+        "label": "Business Address",
+        "default": "[CONFIRMED_ADDRESS]"
+      }
+    ]
   }
 ]

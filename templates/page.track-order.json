@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "aarus-track-order",
+      "settings": {
+        "heading": "Track Your Order",
+        "description": "Enter your order number and email or phone number to check the status of your shipment."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,130 @@
+{{ 'aarus-size-guide.css' | asset_url | stylesheet_tag }}
+
+<section class="aarus-size-guide">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h1 class="aarus-size-guide__heading" style="text-align: center; margin-bottom: 2rem;">{{ section.settings.heading | escape }}</h1>
+    {% endif %}
+
+    <div class="aarus-size-guide__nav" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+      <button class="aarus-size-guide__tab active" data-target="adults" style="padding: 1rem 2rem; border: 1px solid #ccc; background: #fff; cursor: pointer;">Adults</button>
+      <button class="aarus-size-guide__tab" data-target="kids" style="padding: 1rem 2rem; border: 1px solid #ccc; background: #fff; cursor: pointer;">Kids</button>
+      <button class="aarus-size-guide__tab" data-target="jewellery" style="padding: 1rem 2rem; border: 1px solid #ccc; background: #fff; cursor: pointer;">Jewellery</button>
+    </div>
+
+    <div class="aarus-size-guide__content">
+      <!-- Adults -->
+      <div class="aarus-size-guide__panel active" id="adults" style="display: block;">
+        <h2 style="text-align: center;">Chaniya Choli & Kurtis</h2>
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;">
+            <thead>
+              <tr style="background: #f4f4f4;">
+                <th style="padding: 1rem; border: 1px solid #ddd;">Size</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Bust (in)</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Waist (in)</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Hip (in)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">XS</td><td style="padding: 1rem; border: 1px solid #ddd;">32</td><td style="padding: 1rem; border: 1px solid #ddd;">26</td><td style="padding: 1rem; border: 1px solid #ddd;">34</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">S</td><td style="padding: 1rem; border: 1px solid #ddd;">34</td><td style="padding: 1rem; border: 1px solid #ddd;">28</td><td style="padding: 1rem; border: 1px solid #ddd;">36</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">M</td><td style="padding: 1rem; border: 1px solid #ddd;">36</td><td style="padding: 1rem; border: 1px solid #ddd;">30</td><td style="padding: 1rem; border: 1px solid #ddd;">38</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">L</td><td style="padding: 1rem; border: 1px solid #ddd;">38</td><td style="padding: 1rem; border: 1px solid #ddd;">32</td><td style="padding: 1rem; border: 1px solid #ddd;">40</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">XL</td><td style="padding: 1rem; border: 1px solid #ddd;">40</td><td style="padding: 1rem; border: 1px solid #ddd;">34</td><td style="padding: 1rem; border: 1px solid #ddd;">42</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">XXL</td><td style="padding: 1rem; border: 1px solid #ddd;">42</td><td style="padding: 1rem; border: 1px solid #ddd;">36</td><td style="padding: 1rem; border: 1px solid #ddd;">44</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Kids -->
+      <div class="aarus-size-guide__panel" id="kids" style="display: none;">
+        <h2 style="text-align: center;">Kidswear (Baby Girls)</h2>
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;">
+            <thead>
+              <tr style="background: #f4f4f4;">
+                <th style="padding: 1rem; border: 1px solid #ddd;">Age Group</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Chest (in)</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Waist (in)</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Length (in)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">1-2 Years</td><td style="padding: 1rem; border: 1px solid #ddd;">22</td><td style="padding: 1rem; border: 1px solid #ddd;">21</td><td style="padding: 1rem; border: 1px solid #ddd;">18</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">3-4 Years</td><td style="padding: 1rem; border: 1px solid #ddd;">24</td><td style="padding: 1rem; border: 1px solid #ddd;">23</td><td style="padding: 1rem; border: 1px solid #ddd;">22</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">5-6 Years</td><td style="padding: 1rem; border: 1px solid #ddd;">26</td><td style="padding: 1rem; border: 1px solid #ddd;">24</td><td style="padding: 1rem; border: 1px solid #ddd;">26</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">7-8 Years</td><td style="padding: 1rem; border: 1px solid #ddd;">28</td><td style="padding: 1rem; border: 1px solid #ddd;">26</td><td style="padding: 1rem; border: 1px solid #ddd;">30</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">9-10 Years</td><td style="padding: 1rem; border: 1px solid #ddd;">30</td><td style="padding: 1rem; border: 1px solid #ddd;">28</td><td style="padding: 1rem; border: 1px solid #ddd;">34</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Jewellery -->
+      <div class="aarus-size-guide__panel" id="jewellery" style="display: none;">
+        <h2 style="text-align: center;">Bangles & Rings</h2>
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;">
+            <thead>
+              <tr style="background: #f4f4f4;">
+                <th style="padding: 1rem; border: 1px solid #ddd;">Bangle Size</th>
+                <th style="padding: 1rem; border: 1px solid #ddd;">Inner Diameter (in)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">2.2</td><td style="padding: 1rem; border: 1px solid #ddd;">2.12</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">2.4</td><td style="padding: 1rem; border: 1px solid #ddd;">2.25</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">2.6</td><td style="padding: 1rem; border: 1px solid #ddd;">2.37</td></tr>
+              <tr><td style="padding: 1rem; border: 1px solid #ddd;">2.8</td><td style="padding: 1rem; border: 1px solid #ddd;">2.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .aarus-size-guide__tab.active {
+    background: #000 !important;
+    color: #fff !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.aarus-size-guide__tab');
+    const panels = document.querySelectorAll('.aarus-size-guide__panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.style.display = 'none');
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.target).style.display = 'block';
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Size Guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Size Guide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Size Guide"
+    }
+  ]
+}
+{% endschema %}

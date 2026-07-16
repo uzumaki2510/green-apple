@@ -173,7 +173,12 @@ export function formatMoney(moneyValue, format, currency) {
   const currencyPrecision = getCurrencyPrecision(currency);
   const divisor = getCurrencyDivisor(currency);
 
-  return format.replace(/{{\s*(\w+)\s*}}/g, (_, placeholder) => {
+  // Unescape HTML entities like &#123;&#123; if they exist
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = format;
+  const decodedFormat = textarea.value;
+
+  return decodedFormat.replace(/{{\s*(\w+)\s*}}/g, (_, placeholder) => {
     if (typeof placeholder !== 'string') return '';
     if (placeholder === 'currency') return currency;
 

@@ -355,7 +355,10 @@ class PriceFacetComponent extends Component {
    * @returns {string} Just the placeholder (e.g., "{{amount}}")
    */
   #extractMoneyPlaceholder(format) {
-    const match = format.match(/{{\s*\w+\s*}}/);
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = format;
+    const decodedFormat = textarea.value;
+    const match = decodedFormat.match(/{{\s*\w+\s*}}/);
     return match ? match[0] : '{{amount}}';
   }
 

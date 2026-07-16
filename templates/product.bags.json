@@ -399,7 +399,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Fabric care: Machine wash cold with similar colors. Use mild detergent and avoid bleach. Lay flat to dry or hang dry to maintain shape. Iron on low heat if needed. For delicate embellishments, hand wash separately.<br/><br/>Storage: Keep in a cool, dry place away from direct sunlight. Use breathable storage bags for long-term storage to prevent moisture buildup.<br/><br/>Durability: Our pieces are crafted to last. With proper care, your garment will maintain its color, texture, and fit for years to come.</p>",
+                        "text": "<p>Care: Wipe clean with a damp cloth. Do not machine wash.<br/><br/>Storage: Store in a dust bag when not in use. Avoid overstuffing to maintain shape.</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",

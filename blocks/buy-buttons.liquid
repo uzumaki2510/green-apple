@@ -6,7 +6,12 @@
     assign product = collections.all.products.first
   endif
 
-  assign variant = closest.product.selected_or_first_available_variant
+  if product.has_only_default_variant
+    assign variant = product.selected_or_first_available_variant
+  else
+    assign variant = product.selected_variant
+  endif
+
   assign inventory_quantity = variant.inventory_quantity
   assign inventory_policy = variant.inventory_policy
 
@@ -15,7 +20,7 @@
   endif
 
   assign can_add_to_cart = false
-  assign add_to_cart_text = 'products.product.unavailable' | t
+  assign add_to_cart_text = 'products.product.add_to_cart' | t
 
   if variant
     if variant.quantity_rule.min > variant.inventory_quantity and inventory_managed and inventory_policy == 'deny'
@@ -28,10 +33,10 @@
     elsif inventory_managed and inventory_quantity <= 0 and inventory_policy == 'deny' or quantity_rule_soldout
       assign can_add_to_cart = false
       assign add_to_cart_text = 'products.product.sold_out' | t
-    else
-      assign can_add_to_cart = false
-      assign add_to_cart_text = 'products.product.unavailable' | t
     endif
+  else
+    assign can_add_to_cart = false
+    assign add_to_cart_text = 'products.product.add_to_cart' | t
   endif
 %}
 
@@ -64,7 +69,7 @@
           type="hidden"
           name="id"
           ref="variantId"
-          value="{{ product.selected_or_first_available_variant.id }}"
+          value="{% if product.has_only_default_variant %}{{ product.selected_or_first_available_variant.id }}{% elsif product.selected_variant %}{{ product.selected_variant.id }}{% else %}{% endif %}"
         >
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}

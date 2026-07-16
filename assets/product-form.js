@@ -338,15 +338,53 @@ class ProductFormComponent extends Component {
       this.querySelectorAll('add-to-cart-component')
     );
 
+    const form = this.querySelector('form');
+    if (!form) throw new Error('Product form element missing');
+
+    const currentVariantId = overrideVariantId || new FormData(form).get('id');
+
+    if (!currentVariantId) {
+      for (const container of allAddToCartContainers) {
+        container.disable();
+      }
+
+      const errorMessage = window.variantStrings?.noSizeSelected || 'Please select an option before adding to cart.';
+      if (addToCartTextError) {
+        addToCartTextError.classList.remove('hidden');
+
+        const textNode = addToCartTextError.childNodes[2];
+        if (textNode) {
+          textNode.textContent = errorMessage;
+        } else {
+          const newTextNode = document.createTextNode(errorMessage);
+          addToCartTextError.appendChild(newTextNode);
+        }
+
+        this.#setLiveRegionText(errorMessage);
+
+        if (this.#timeout) clearTimeout(this.#timeout);
+        this.#timeout = setTimeout(() => {
+          if (!addToCartTextError) return;
+          addToCartTextError.classList.add('hidden');
+          this.#clearLiveRegionText();
+        }, ERROR_MESSAGE_DISPLAY_DURATION);
+      }
+
+      setTimeout(() => {
+        for (const container of allAddToCartContainers) {
+          container.enable();
+        }
+      }, ERROR_BUTTON_REENABLE_DELAY);
+
+      return;
+    }
+
     if (!overrideVariantId) {
       const anyButtonDisabled = Array.from(allAddToCartContainers).some(
         (container) => container.refs.addToCartButton?.disabled
       );
       if (anyButtonDisabled) return;
     }
-
-    const form = this.querySelector('form');
-    if (!form) throw new Error('Product form element missing');
 
     if (!overrideVariantId && this.refs.quantitySelector?.canAddToCart) {
       const validation = this.refs.quantitySelector.canAddToCart();

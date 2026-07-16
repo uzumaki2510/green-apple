@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "aarus-size-guide",
+      "settings": {
+        "heading": "Aarus Size Guide"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,78 @@
+{{ 'aarus-track-order.css' | asset_url | stylesheet_tag }}
+
+<section class="aarus-track-order">
+  <div class="page-width">
+    <div class="aarus-track-order__container" style="max-width: 600px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+      {% if section.settings.heading != blank %}
+        <h1 class="aarus-track-order__heading" style="margin-bottom: 1rem;">{{ section.settings.heading | escape }}</h1>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <p class="aarus-track-order__description" style="margin-bottom: 3rem; color: rgba(var(--color-foreground), 0.75);">
+          {{ section.settings.description | escape }}
+        </p>
+      {% endif %}
+
+      <form action="#" method="get" class="aarus-track-order__form" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: left;">
+        <div class="field">
+          <input
+            type="text"
+            id="OrderNumber"
+            name="order"
+            class="field__input"
+            placeholder="e.g. #1001"
+            required
+            style="width: 100%; padding: 1.2rem; border: 1px solid rgba(var(--color-foreground), 0.2);"
+          >
+          <label class="field__label" for="OrderNumber" style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">Order Number</label>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            id="ContactInfo"
+            name="contact"
+            class="field__input"
+            placeholder="Email or Phone Number"
+            required
+            style="width: 100%; padding: 1.2rem; border: 1px solid rgba(var(--color-foreground), 0.2);"
+          >
+          <label class="field__label" for="ContactInfo" style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">Email or Phone Number</label>
+        </div>
+
+        <button type="submit" class="button button--primary" style="margin-top: 1rem; padding: 1.2rem; width: 100%;">
+          Track Order
+        </button>
+      </form>
+      
+      <p style="margin-top: 2rem; font-size: 0.9rem; color: rgba(var(--color-foreground), 0.6);">
+        Need help? <a href="/pages/contact" style="text-decoration: underline;">Contact Support</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Track Order Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Track Your Order"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Enter your order number and email or phone number to check the status of your shipment."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aarus Track Order"
+    }
+  ]
+}
+{% endschema %}
