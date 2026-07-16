@@ -115,6 +115,48 @@
               }
             ]
           }
+        ],
+        "default": [
+          {
+            "id": "scheme-1",
+            "name": "Aarus Ivory",
+            "settings": {
+              "background": "#FDFBF7",
+              "text": "#1a1a3a",
+              "button": "#E20B5D",
+              "button_label": "#FFFFFF"
+            }
+          },
+          {
+            "id": "scheme-2",
+            "name": "Aarus Indigo",
+            "settings": {
+              "background": "#1a1a3a",
+              "text": "#FDFBF7",
+              "button": "#F7A028",
+              "button_label": "#1a1a3a"
+            }
+          },
+          {
+            "id": "scheme-3",
+            "name": "Aarus Mehndi",
+            "settings": {
+              "background": "#4A5D23",
+              "text": "#FDFBF7",
+              "button": "#E20B5D",
+              "button_label": "#FFFFFF"
+            }
+          },
+          {
+            "id": "scheme-4",
+            "name": "Aarus Marigold",
+            "settings": {
+              "background": "#F7A028",
+              "text": "#1a1a3a",
+              "button": "#E20B5D",
+              "button_label": "#1a1a3a"
+            }
+          }
         ]
       }
     ]
