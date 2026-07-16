@@ -529,7 +529,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>We offer a 7-day exchange policy for unused items in their original packaging. Custom-made items are not eligible for exchange. <a href=\\"/policies/refund-policy\\">Read our full Exchange Policy</a>.</p>",
+                        "text": "<p>We offer a 7-day exchange policy for unused items in their original packaging. Custom-made items are not eligible for exchange. <a href=\"/policies/refund-policy\">Read our full Exchange Policy</a>.</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
